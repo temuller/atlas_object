@@ -1,4 +1,6 @@
+numpy
 pandas
-matplotlib
 astropy
+tendrils
+getpass4
 jupyterlab
