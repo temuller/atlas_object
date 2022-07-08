@@ -18,6 +18,10 @@ conda activate atlas
 pip install atlas_object
 ```
 
+# ATLAS forced photometry
+
+Check https://fallingstar-data.com/forcedphot/resultdesc/
+
 ## Contributing
 
 To contribute, either open an issue or send a pull request (prefered option). You can also contact me directly.
