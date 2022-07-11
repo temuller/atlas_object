@@ -1,6 +1,5 @@
 numpy
 pandas
 astropy
-tendrils
-getpass4
+matplotlib
 jupyterlab

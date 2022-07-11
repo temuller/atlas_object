@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from copy import deepcopy
 
+from atlas_object.lightcurve_class import lightcurves
 
 class atlas_object(object):
     """Class that represents an object with ATLAS photometry.

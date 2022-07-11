@@ -6,7 +6,7 @@ with open("README.md", "r") as readme_file:
 with open("requirements.txt") as requirements_file:
     requirements = requirements_file.read().splitlines()
 
-with open("src/atlas_object/_version.py") as version_file:
+with open("atlas_object/_version.py") as version_file:
     for line in version_file:
         if "__version__" in line:
             __version__ = line.split()[-1].replace('"', "")
@@ -21,8 +21,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/temuller/atlas_object",
-    package_dir={"": "src"},
-    packages=setuptools.find_packages(where="src"),
+    packages=setuptools.find_packages(),
     python_requires=">=3.8",
     classifiers=[
         "Programming Language :: Python :: 3",
