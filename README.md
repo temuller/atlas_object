@@ -6,7 +6,7 @@ Package for "cleaning" ATLAS light curves by doing variance-weighted rolling mea
 [![license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/temuller/atlas_object/blob/master/LICENSE)
 ![Python Version](https://img.shields.io/badge/Python-3.8%2B-blue)
 [![PyPI](https://img.shields.io/pypi/v/atlas_object?label=PyPI&logo=pypi&logoColor=white)](https://pypi.org/project/atlas_object/)
-[![DOI](https://zenodo.org/badge/471063086.svg)](https://zenodo.org/badge/latestdoi/471063086)
+[![DOI](https://zenodo.org/badge/501723601.svg)](https://zenodo.org/badge/latestdoi/501723601)
 
 ___
 ## Conda environment
@@ -96,5 +96,14 @@ To contribute, either open an issue or send a pull request (prefered option). Yo
 If you make use of ATLAS Object, please cite:
 
 ```code
-coming soon... 
+@software{tomas_e_muller_bravo_2022_6821107,
+  author       = {Tomás E. Müller Bravo},
+  title        = {temuller/atlas\_object: First release!},
+  month        = jul,
+  year         = 2022,
+  publisher    = {Zenodo},
+  version      = {v0.1.0},
+  doi          = {10.5281/zenodo.6821107},
+  url          = {https://doi.org/10.5281/zenodo.6821107}
+} 
 ```
