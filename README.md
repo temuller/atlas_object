@@ -6,6 +6,7 @@ Package for "cleaning" ATLAS light curves by doing variance-weighted rolling mea
 [![license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/temuller/atlas_object/blob/master/LICENSE)
 ![Python Version](https://img.shields.io/badge/Python-3.8%2B-blue)
 [![PyPI](https://img.shields.io/pypi/v/atlas_object?label=PyPI&logo=pypi&logoColor=white)](https://pypi.org/project/atlas_object/)
+[![DOI](https://zenodo.org/badge/471063086.svg)](https://zenodo.org/badge/latestdoi/471063086)
 
 ___
 ## Conda environment
