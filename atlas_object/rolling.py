@@ -24,8 +24,8 @@ def weighted_rolling(x_data, y_data, yerr_data=None,
 
     Returns
     -------
-    rolling_y: array
-        Rolling data.
+    4-tuple with rolling data ('x', 'y' and 'yerr' arrays) and
+    indices of the data removed by the sigma clipping
     """
     rolling_dict = {'x': [], 'y': [], 'yerr': []}
     if yerr_data is None:

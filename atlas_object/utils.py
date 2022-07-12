@@ -1,4 +1,12 @@
+import requests
 import numpy as np
+
+def download_test_data():
+    """Downloads an ATLAS force photometry file.
+    """
+    url = 'https://raw.githubusercontent.com/temuller/atlas_object/main/notebooks/test_lc.csv'
+    response = requests.get(url)
+    open("test_lc.csv", "wb").write(response.content)
 
 def flux2mag(flux, zp, flux_err=0.0):
     """Converts fluxes to magnitudes, propagating errors if given.
@@ -53,4 +61,4 @@ def mag2flux(mag, zp, mag_err=0.0):
     flux = 10 ** (-0.4 * (mag - zp))
     flux_err = np.abs(flux * 0.4 * np.log(10) * mag_err)
 
-    return flux, 
+    return flux, flux_err

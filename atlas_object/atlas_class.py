@@ -31,7 +31,14 @@ class atlas_object(object):
         return getattr(self, item)
 
     def plot_original(self, xmin=None, xmax=None):
-        """
+        """Plots the initial light curves.
+
+        Parameters
+        ----------
+        xmin: float, default 'None'
+            Minimum x-axis range.
+        xmax: float, default 'None'
+            Maximum x-axis range.
         """
         mags = np.empty(0)
 
@@ -52,7 +59,14 @@ class atlas_object(object):
         plt.show()
 
     def plot_lcs(self, xmin=None, xmax=None):
-        """
+        """Plots the current state of the light curves.
+
+        Parameters
+        ----------
+        xmin: float, default 'None'
+            Minimum x-axis range.
+        xmax: float, default 'None'
+            Maximum x-axis range.
         """
         mags = np.empty(0)
 
@@ -83,7 +97,21 @@ class atlas_object(object):
 
     def rolling(self, window, center=False,
                 sigma_clip=False, **sigclip_kwargs):
-        """
+        """Weighted rolling mean function.
+
+        Parameters
+        ----------
+        window: float
+            Time window in units of days.
+        center: bool, default 'False'
+            If 'False', set the window labels as the right
+            edge of the window index. If 'True', set the window
+            labels as the center of the window index.
+        sigma_clip: bool, default 'False'
+            If 'True', sigma clipping is performed within rolling
+            windows.
+        sigclip_kwargs: dict
+            Input parameters for the sigma clipping. See 'sigma_clip()'.
         """
         color_dict = {'c': 'blue', 'o': 'red'}
         for filt in self.bands:
@@ -94,7 +122,19 @@ class atlas_object(object):
         self.modified = True
 
     def sigma_clip(self, niter=0, n_sigma=3, use_median=False):
-        """
+        """Performs sigma clipping.
+
+        Parameters
+        ----------
+        niter: int, default ``1``
+            The number of sigma-clipping iterations to perform.
+            If niter is negative, iterations will continue until no more
+            clipping occurs or until abs('niter') is reached, whichever
+            is reached first.
+        n_sigma: float, default '3'
+            Number of standard deviations used.
+        use_median: bool, default 'False':
+            If 'True', use median of data instead of mean.
         """
         color_dict = {'c': 'blue', 'o': 'red'}
         for filt in self.bands:
