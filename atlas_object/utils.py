@@ -1,12 +1,13 @@
 import requests
 import numpy as np
 
+
 def download_test_data():
-    """Downloads an ATLAS force photometry file.
-    """
-    url = 'https://raw.githubusercontent.com/temuller/atlas_object/main/notebooks/test_lc.csv'
+    """Downloads an ATLAS force photometry file."""
+    url = "https://raw.githubusercontent.com/temuller/atlas_object/main/notebooks/test_lc.csv"
     response = requests.get(url)
     open("test_lc.csv", "wb").write(response.content)
+
 
 def flux2mag(flux, zp, flux_err=0.0):
     """Converts fluxes to magnitudes, propagating errors if given.
@@ -28,7 +29,9 @@ def flux2mag(flux, zp, flux_err=0.0):
     """
 
     if type(flux) == np.ndarray:
-        flux_ = np.array([f if f >= 0.0 else np.nan for f in flux])  # turns negative and 0.0 values to NaN
+        flux_ = np.array(
+            [f if f >= 0.0 else np.nan for f in flux]
+        )  # turns negative and 0.0 values to NaN
     elif flux <= 0.0:
         flux_ = np.nan
     else:

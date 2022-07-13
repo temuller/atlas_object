@@ -5,9 +5,9 @@ from atlas_object.utils import flux2mag, mag2flux
 from atlas_object.rolling import weighted_rolling
 from atlas_object.sigma_clipping import weighted_sigmaclip
 
+
 class lightcurve(object):
-    """Light curve class.
-    """
+    """Light curve class."""
 
     def __init__(self, band, lcs_df):
         """
@@ -26,13 +26,13 @@ class lightcurve(object):
         self.flux_err = data.duJy.values
         self.mag = data.m.values
         self.mag_err = data.dm.values
-        color_dict = {'c': 'cyan', 'o': 'orange'}
+        color_dict = {"c": "cyan", "o": "orange"}
         self.color = color_dict[band]
         self.snr = data.uJy.values / data.duJy.values
         self.zp = 23.9
 
     def __repr__(self):
-        return f'band: {self.band}'
+        return f"band: {self.band}"
 
     def __getitem__(self, item):
         return getattr(self, item)
@@ -67,8 +67,9 @@ class lightcurve(object):
         use_median: bool, default 'False':
             If 'True', use median of data instead of mean.
         """
-        indices, iter_val = weighted_sigmaclip(self.flux, self.flux_err,
-                                               niter, n_sigma, use_median)
+        indices, iter_val = weighted_sigmaclip(
+            self.flux, self.flux_err, niter, n_sigma, use_median
+        )
         self.time = self.time[indices]
         self.flux = self.flux[indices]
         self.flux_err = self.flux_err[indices]
@@ -77,8 +78,9 @@ class lightcurve(object):
         self.indices = indices
         self.iter = iter_val
 
-    def rolling(self, window, center=False,
-                sigma_clip=False, **sigclip_kwargs):
+    def rolling(
+        self, window, center=False, sigma_clip=False, **sigclip_kwargs
+    ):
         """Weighted rolling mean function.
 
         Parameters
@@ -95,9 +97,15 @@ class lightcurve(object):
         sigclip_kwargs: dict
             Input parameters for the sigma clipping. See 'sigma_clip()'.
         """
-        x, y, yerr, inds = weighted_rolling(self.time, self.flux,
-                                            self.flux_err, window, center,
-                                            sigma_clip, **sigclip_kwargs)
+        x, y, yerr, inds = weighted_rolling(
+            self.time,
+            self.flux,
+            self.flux_err,
+            window,
+            center,
+            sigma_clip,
+            **sigclip_kwargs,
+        )
         self.time = x
         self.flux = y
         self.flux_err = yerr
@@ -106,8 +114,7 @@ class lightcurve(object):
 
 
 class lightcurves(object):
-    """Multi-colour light curves class.
-    """
+    """Multi-colour light curves class."""
 
     def __init__(self, lcs_df):
         """

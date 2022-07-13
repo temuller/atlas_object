@@ -5,9 +5,10 @@ from copy import deepcopy
 
 from atlas_object.lightcurve_class import lightcurves
 
+
 class atlas_object(object):
-    """Class that represents an object with ATLAS photometry.
-    """
+    """Class that represents an object with ATLAS photometry."""
+
     def __init__(self, lc_file):
         """
         Parameters
@@ -24,7 +25,7 @@ class atlas_object(object):
         self.modified = False
 
     def __repr__(self):
-        rep = (f'LC file: {self.lc_file}')
+        rep = f"LC file: {self.lc_file}"
         return rep
 
     def __getitem__(self, item):
@@ -45,12 +46,19 @@ class atlas_object(object):
         fig, ax = plt.subplots(figsize=(8, 6))
         for filt in self.bands:
             init_lcs = self.init_lcs[filt]
-            ax.errorbar(init_lcs.time, init_lcs.mag, init_lcs.mag_err,
-                        fmt='o', label=filt, c=init_lcs.color, mec='k')
+            ax.errorbar(
+                init_lcs.time,
+                init_lcs.mag,
+                init_lcs.mag_err,
+                fmt="o",
+                label=filt,
+                c=init_lcs.color,
+                mec="k",
+            )
             mags = np.r_[mags, init_lcs.mag]
 
-        ax.set_ylabel('Appartent Magnitude', fontsize=18)
-        ax.set_xlabel('MJD', fontsize=18)
+        ax.set_ylabel("Appartent Magnitude", fontsize=18)
+        ax.set_xlabel("MJD", fontsize=18)
         ax.tick_params(labelsize=18)
         ax.set_ylim(mags.min() - 0.5, mags.max() + 0.5)
         ax.set_xlim(xmin, xmax)
@@ -74,20 +82,28 @@ class atlas_object(object):
         for filt in self.bands:
             if self.modified:
                 lcs = self.lcs[filt]
-                ax.errorbar(lcs.time, lcs.mag, lcs.mag_err,
-                            fmt='*', c=lcs.color)
+                ax.errorbar(
+                    lcs.time, lcs.mag, lcs.mag_err, fmt="*", c=lcs.color
+                )
                 alpha = 0.2
             else:
                 alpha = 1
 
             init_lcs = self.init_lcs[filt]
-            ax.errorbar(init_lcs.time, init_lcs.mag, init_lcs.mag_err,
-                        fmt='o', label=filt, c=init_lcs.color, mec='k',
-                        alpha=alpha)
+            ax.errorbar(
+                init_lcs.time,
+                init_lcs.mag,
+                init_lcs.mag_err,
+                fmt="o",
+                label=filt,
+                c=init_lcs.color,
+                mec="k",
+                alpha=alpha,
+            )
             mags = np.r_[mags, init_lcs.mag]
 
-        ax.set_ylabel('Appartent Magnitude', fontsize=18)
-        ax.set_xlabel('MJD', fontsize=18)
+        ax.set_ylabel("Appartent Magnitude", fontsize=18)
+        ax.set_xlabel("MJD", fontsize=18)
         ax.tick_params(labelsize=18)
         ax.set_ylim(mags.min() - 0.5, mags.max() + 0.5)
         ax.set_xlim(xmin, xmax)
@@ -95,8 +111,9 @@ class atlas_object(object):
         ax.legend(fontsize=18)
         plt.show()
 
-    def rolling(self, window, center=False,
-                sigma_clip=False, **sigclip_kwargs):
+    def rolling(
+        self, window, center=False, sigma_clip=False, **sigclip_kwargs
+    ):
         """Weighted rolling mean function.
 
         Parameters
@@ -113,11 +130,11 @@ class atlas_object(object):
         sigclip_kwargs: dict
             Input parameters for the sigma clipping. See 'sigma_clip()'.
         """
-        color_dict = {'c': 'blue', 'o': 'red'}
+        color_dict = {"c": "blue", "o": "red"}
         for filt in self.bands:
-            self.lcs[filt].rolling(window, center,
-                                   sigma_clip,
-                                   **sigclip_kwargs)
+            self.lcs[filt].rolling(
+                window, center, sigma_clip, **sigclip_kwargs
+            )
             self.lcs[filt].color = color_dict[filt]
         self.modified = True
 
@@ -136,7 +153,7 @@ class atlas_object(object):
         use_median: bool, default 'False':
             If 'True', use median of data instead of mean.
         """
-        color_dict = {'c': 'blue', 'o': 'red'}
+        color_dict = {"c": "blue", "o": "red"}
         for filt in self.bands:
             self.lcs[filt].sigma_clip(niter, n_sigma, use_median)
             self.lcs[filt].color = color_dict[filt]
